@@ -1,55 +1,77 @@
-
 (function($){
+	let apihost = 'http://bugs.shpp.me:3013/';
+	let apiArtwork = apihost + 'images';
+	let artworkResponse = null;
+	let artwork = null;
 
-	    // if (location.protocol.indexOf('https')===-1) {
-		// 	if (location.href.indexOf('fromhttp')===-1) {
-		    // 		var n = 'https://'+location.href.split('://')[1]
-			// 		if (location.href.indexOf('?')===-1) {
-			    // 			n += '?fromhttp=true'
-				// 		} else {
-				    // 			n += '&fromhttp=true'
-					// 		}
-					    // 		location.href = n
-						// 	}
-						    // }
-
-	var apihost = '/api/'
-	apihost = 'http://bugs.shpp.me:3013/images'
-//	apihost = 'https://gopherize.me/api/'
-	var apiArtwork = apihost// + 'artwork/'
-	var artworkResponse = null
-	var artwork = null
-
-	var selection = []
+	let selection = [];
+	let resultname;
+	let minElsAmount = 3;
 
 	function absurl() {
 		return apihost+'render.png?dl=0&images=' + encodeURIComponent(selection.join('|'))
 	}
 
 	$('#download-button').click(function(){
-		var $this = $(this)
-		$this.attr("disabled", "disabled")
+		let $this = $(this);
+		$this.attr("disabled", "disabled");
 		location.href = '/api/render.png?images=' + encodeURIComponent(selection.join('|'))
-	})
+	});
 
 	$('#share-button').click(function(){
-		var $this = $(this)
-		var absURL = absurl()
-		var text = "I just Gopherized myself on https://gopherize.me via @ashleymcnamara and @matryer"
-		var shareURL = 'https://twitter.com/share?url='+encodeURIComponent(absURL)+'&text='+encodeURIComponent(text)+'&hashtags=golang,gopherize'
+		let $this = $(this);
+		let absURL = absurl();
+		let text = "I just Gopherized myself on https://gopherize.me via @ashleymcnamara and @matryer";
+		let shareURL = 'https://twitter.com/share?url='+encodeURIComponent(absURL)+'&text='+encodeURIComponent(text)+'&hashtags=golang,gopherize'
 		window.open(shareURL)
-	})
+	});
 
 	$('#buy-button').click(function(){
 		buy()
-	})
+	});
 
-	$('#next-button').click(function(){
-		next()
-	})
+	$('#render-button').click(function(){
+		render()
+	});
+
+	/* range slider button display */
+    let range = $('.input-range'),
+		value = $('.range-value');
+    value.val(range.attr('value'));
+    range.on('input', function(){
+    	value.val(this.value);
+        $('#sum').html(this.value);
+    });
+    value.on('input', function () {
+    	if(this.value < 150) this.value = 150;
+    	if(this.value > 15000) this.value = 15000;
+		range.val(this.value);
+        $('#sum').html(this.value);
+    });
+
+    $('#cancel').on('click', function () {
+		$('#payment').css('display', 'none');
+        $("#render-button").css("display", 'block');
+    });
+
+    $('#liqpay').on('click', () =>{
+    	$.ajax({
+			url: apihost + "pay",
+			method: "POST",
+			data: {
+				result_url: apihost + 'download?resultname=' + resultname,
+				amount: value.val()
+			}
+		}).done(msg=>{
+			msg = JSON.parse(msg);
+			$('#data').val(msg['DATA']);
+            $('#signature').val(msg['SIGNATURE']);
+            $('#payment').find('form').submit();
+		})
+	});
 
 	function loadArtwork(callback) {
-		busy(true)
+		busy(true);
 		$.ajax({
 			url: apiArtwork,
 			success: callback,
@@ -64,19 +86,19 @@
 
 	function busy(is) {
 		if (!is) {
-			$(".busy").hide()
+			$(".busy").hide();
 			return
 		}
 		$(".busy").show()
 	}
 
 	function getImageByID(id) {
-		for (var cat in artwork) {
+		for (let cat in artwork) {
 			if (!artwork.hasOwnProperty(cat)) { continue }
-			var category = artwork[cat]
-			for (var img in category.images) {
+			let category = artwork[cat];
+			for (let img in category.images) {
 				if (!category.images.hasOwnProperty(img)) { continue }
-				var image = category.images[img]
+				let image = category.images[img];
 				if (image.id === id) {
 					return image
 				}
@@ -85,54 +107,59 @@
 		return null
 	}
 
-	function updatePreview() {
-		$("#next-button").prop("disabled", false)
-		var ids = []
-		var previewEl = $('#preview').empty()
-		var special = true
+	function findSelected() {
+		let ids = [];
+		let special = true;
+        let previewEl = $('#preview').empty();
 		$('#options').find('input:checked').each(function(){
-			var $this = $(this)
-			var id = $this.val()
-			var img = getImageByID(id)
-			if (img != null) {
-				ids.push(id)
-				var mt = special ? 0 : -1000
-				previewEl.append(
-					$("<img>", {src: img.href}).css({
-						marginTop: -1000
-					})
-				)
-				special = false
-			}
-		})
-		selection = ids
-		var i = 1;
+            let $this = $(this);
+            let id = $this.val();
+            let img = getImageByID(id);
+            if (img !== null) {
+                ids.push(id);
+                let mt = special ? 0 : -1000;
+                previewEl.append(
+                    $("<img>", {src: img.href}).css({
+                        marginTop: -1000
+                    })
+                );
+                special = false
+            }
+        });
+        return ids;
+    }
+
+	function updatePreview() {
+		$("#render-button").prop("disabled", false);
+		let previewEl = $('#preview').empty();
+		selection = findSelected();
+        let i = 1;
 		previewEl.find("img").each(function(){
-			var $this = $(this)
+			let $this = $(this);
 			$this.animate({
 				marginTop: 0
-			}, 250*i)
+			}, 250*i);
 			i++
 		})
 	}
 
 	function shuffle() {
-		var i = 0;
-		for (var cat in artwork) {
+		let i = 0;
+		for (let cat in artwork) {
 			if (!artwork.hasOwnProperty(cat)) { continue }
-			i++
-			var special = i<3
-			var category = artwork[cat]
-			var rand = Math.round(Math.random()*(category.images.length+5))-6
+			i++;
+			let special = i <= minElsAmount;
+			let category = artwork[cat];
+			let rand = Math.round(Math.random()*(category.images.length));
 			if (rand < 0 && special) {
 				rand = 0
 			}
 			if (rand < 0) {
 				// none
-				$('input[name="'+category.name+'"]').prop('checked', false)
+				$('input[name="'+category.name+'"]').prop('checked', false);
 				continue	
 			}
-			var image = category.images[rand]
+			let image = category.images[rand];
 			$('input[value="'+image.id+'"]').prop('checked', true)
 		}
 		updatePreview()
@@ -142,68 +169,75 @@
 		return s.replace(/_/g, ' ')
 	}
 
-	function buy() {
-		window.open("https://www.zazzle.co.uk/api/create/at-238314746086099847?rf=238314746086099847&ax=DesignBlast&sr=250359396377602696&cg=0&t__useQpc=true&t__smart=true&continueUrl=https%3A%2F%2Fwww.zazzle.co.uk%2Fgopherizemestore&fwd=ProductPage&tc=&ic=&gopher="+encodeURIComponent(absurl()))
-	}
-
 	function reset() {
-		$("form#options").trigger("reset")
-		selection = []
+		$("form#options").trigger("reset");
+		selection = [];
 		updatePreview()
 	}
 
-	function next() {
-		$("#next-button").prop("disabled", true)
-		location.href = '/save?images=' + encodeURIComponent(selection.join('|'))
+	function render() {
+		$("#render-button").css("display", 'none');
+		$('#payment').css('display', 'block');
+		$('h4.panel-title a').click();
+		 resultname = new Date().getTime();
+		 selected = findSelected();
+		$('#id').val(apihost + 'download/?resultname='+resultname);
+		$.ajax({
+			url: apihost + 'render',
+			method: "POST",
+			data: {
+				selected: selected,
+				resultname: resultname
+			}
+		});
+		updatePreview();
 	}
 
 	$(function(){
 
 		$('#shuffle-button').click(function(){
 			shuffle()
-		})
+		});
 		$('#reset-button').click(function(){
 			reset()
-		})
+		});
 
-		var optionsEl = $('#options')
+		let optionsEl = $('#options');
 
 		loadArtwork(function(result){
-		console.log(result)
-			artworkResponse = result
-			artwork = result.categories
-			$(".total_combinations").text(Humanize.intComma(artworkResponse.total_combinations) + " possible combinations")
-			var i = 0
-			var special = true
-			for (var cat in artwork) {
+			artworkResponse = result;
+			artwork = result.categories;
+			$(".total_combinations").text(Humanize.intComma(artworkResponse.total_combinations) + " possible combinations");
+			let i = 0;
+			let special = true;
+			for (let cat in artwork) {
 				if (!artwork.hasOwnProperty(cat)) { continue }
-				i++
-				special = i<3
-				var category = artwork[cat]
-				var catID = category.name
-				var list = $("<div>")
+				i++;
+				special = i <= minElsAmount;
+				let category = artwork[cat];
+				let catID = category.name;
+				let list = $("<div>");
 				
 				if (!special) {
 					$("<label>", {class:'none item'}).append(
 						$('<input>', {type:'radio', name:catID, value: "<none>", checked: (special ? 'checked' : null)}).change(updatePreview),
-						$('<img>', {src: "../static/whitebox.png", 'title':'Remove', 'data-toggle':'tooltip', 'data-placement':'bottom'}).tooltip()
+						$('<img>', {src: "static/whitebox.png", 'title':'Remove', 'data-toggle':'tooltip', 'data-placement':'bottom'}).tooltip()
 					).appendTo(list)
 				}
 
-				var specialInCat = true
-				for (var img in category.images) {
+				let specialInCat = true;
+				for (let img in category.images) {
 					if (!category.images.hasOwnProperty(img)) { continue }
-					var image = category.images[img]
+					let image = category.images[img];
 
 					$("<label>", {class:'item'}).append(
 						$('<input>', {type:'radio', name:catID, value:image.id, checked: (special && specialInCat ? 'checked' : null)}).change(updatePreview),
 						$('<img>', {src: image.thumbnail_href, 'title':image.name, 'data-toggle':'tooltip', 'data-placement':'bottom'}).tooltip()
-					).appendTo(list)
+					).appendTo(list);
 					specialInCat = false
-
 				}
 				
-				var panel = $("<div>", {class:'panel panel-default'})
+				let panel = $("<div>", {class:'panel panel-default'});
 				panel.append(
 					$("<div>", {class:'panel-heading', role:'tab'}).append(
 						$("<h4>", {class:'panel-title'}).append(
@@ -218,14 +252,14 @@
 							}).text(nicename(category.name)).tooltip()
 						)
 					)
-				)
+				);
 				panel.append(
 					$("<div>", {id:catID, class:'panel-collapse collapse' + (special ? ' in' : ''), role:'tabpanel'}).append(
 						$("<div>", {class:'panel-body'}).append(
 							list
 						)
 					)
-				)
+				);
 
 				optionsEl.append(panel)
 
@@ -237,4 +271,4 @@
 
 	})
 
-})(jQuery)
+})(jQuery);
