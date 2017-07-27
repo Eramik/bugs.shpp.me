@@ -150,7 +150,7 @@
 			i++;
 			let special = i <= minElsAmount;
 			let category = artwork[cat];
-			let rand = Math.round(Math.random()*(category.images.length+5))-6;
+			let rand = Math.round(Math.random()*(category.images.length));
 			if (rand < 0 && special) {
 				rand = 0
 			}
