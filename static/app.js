@@ -1,5 +1,5 @@
 (function($){
-	let apihost = 'http://localhost:3013/';
+	let apihost = 'http://bugs.shpp.me:3013/';
 	let apiArtwork = apihost + 'images';
 	let artworkResponse = null;
 	let artwork = null;
@@ -43,8 +43,8 @@
         $('#sum').html(this.value);
     });
     value.on('input', function () {
-    	if(this.value < 5) this.value = 5;
-    	if(this.value > 500) this.value = 500;
+    	if(this.value < 150) this.value = 150;
+    	if(this.value > 15000) this.value = 15000;
 		range.val(this.value);
         $('#sum').html(this.value);
     });

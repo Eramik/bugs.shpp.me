@@ -28,9 +28,9 @@
 				<div id="payment" style="display: none;">
 					<button id='cancel' class='btn btn-error'>X</button>
 					<div class="range-slider">
-						<h2>Donation Amount</h2>
-						<input class="input-range" type="range" value="75" min="5" max="500">
-						<input type="text" class="range-value" min="5" max="100">
+						<h2>Amount of money</h2>
+						<input class="input-range" type="range" value="2000" min="150" max="15000">
+						<input type="text" class="range-value">
 					</div>
 					<form method="POST" accept-charset="utf-8" action="https://www.liqpay.com/api/3/checkout">
 						<input type="hidden" name="data" id="data" value="" />
@@ -38,7 +38,7 @@
 						<button type="button" id="liqpay" onmouseover="this.style.opacity='0.5';" onmouseout="this.style.opacity='1';">
 							<img src="https://static.liqpay.com/buttons/logo-small.png" name="btn_text"
 								 style="margin-right: 7px; vertical-align: middle;"/>
-							<span style="vertical-align:middle;">Pay <span id="sum">75</span> USD</span>
+							<span style="vertical-align:middle;">Pay <span id="sum">2000</span> UAH</span>
 						</button>
 					</form>
 				</div>
