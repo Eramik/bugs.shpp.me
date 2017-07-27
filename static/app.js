@@ -70,6 +70,29 @@
 		})
 	});
 
+	$('dialog').dialog({
+        bgiframe: true,
+        autoOpen: false,
+        modal: true,
+        open: function(){
+            $('.ui-widget-overlay').bind('click',function(){
+                $('dialog').dialog('close');
+            })
+        }
+	});
+    $('dialog#about-us').dialog('open');
+
+
+    $('.logo').on('click', (e)=>{
+        var target = e.target.id;
+        console.log(target);
+        if(target === 'visalogo')
+			$('dialog#visa').dialog('open');
+        if(target === 'mclogo')
+            $('dialog#mastercad').dialog('open');
+    });
+
+
 	function loadArtwork(callback) {
 		busy(true);
 		$.ajax({

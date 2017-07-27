@@ -155,4 +155,45 @@ footer {
 input::-moz-focus-inner {
 	border: 0;
 }
-
+#liqpay-logos {
+	width: 30%;
+	float: right;
+	margin-right: 10%;
+}
+.logo-holder {
+	width: 40%;
+	display: inline-block;
+}
+.logo-holder img {
+	width: 60%;
+	cursor: pointer;
+}
+.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable{
+	position: fixed!important;
+	top: 10%!important;
+	left:20%!important;
+	right: 20%!important;
+	width: 60%!important;
+	max-height: 80vh;
+	overflow-y: scroll;
+	border: 3px solid green;
+}
+* {
+	-ms-overflow-style: none;  // IE 10+
+overflow: -moz-scrollbars-none;  // Firefox
+}
+* ::-webkit-scrollbar {
+	display: none;
+}
+.ui-dialog a{
+	color: green!important;
+	text-decoration: underline;
+}
+.ui-dialog a:focus{
+	outline: none;
+}
+.ui-dialog-titlebar.ui-corner-all.ui-widget-header.ui-helper-clearfix.ui-draggable-handle{
+	background: transparent;
+	border: none;
+	cursor: default;
+}
