@@ -8,29 +8,7 @@
 	var resultname;
 	var minElsAmount = 3;
 
-	function absurl() {
-		return apihost+'render.png?dl=0&images=' + encodeURIComponent(selection.join('|'))
-	}
-
-	$('#download-button').click(function(){
-		var $this = $(this);
-		$this.attr("disabled", "disabled");
-		location.href = '/api/render.png?images=' + encodeURIComponent(selection.join('|'))
-	});
-
-	$('#share-button').click(function(){
-		var $this = $(this);
-		var absURL = absurl();
-		var text = "I just Gopherized myself on https://gopherize.me via @ashleymcnamara and @matryer";
-		var shareURL = 'https://twitter.com/share?url='+encodeURIComponent(absURL)+'&text='+encodeURIComponent(text)+'&hashtags=golang,gopherize'
-		window.open(shareURL)
-	});
-
-	$('#buy-button').click(function(){
-		buy()
-	});
-
-	$('#render-button').click(function(){
+    $('#render-button').click(function(){
 		render()
 	});
 
@@ -131,7 +109,7 @@
 		return null
 	}
 
-	function findSelected() {
+	function findSelected(onrender) {
 		var ids = [];
 		var special = true;
         var previewEl = $('#preview').empty();
@@ -139,13 +117,13 @@
             var $this = $(this);
             var id = $this.val();
             var img = getImageByID(id);
+            var marginTop = onrender ? 0 : -1000;
             if (img !== null) {
                 ids.push(id);
                 var mt = special ? 0 : -1000;
                 previewEl.append(
-                    $("<img>", {src: img.href}).css({
-                        marginTop: -1000
-                    })
+                    $("<img>", {src: img.href})
+                        .css({marginTop: marginTop})
                 );
                 special = false
             }
@@ -204,7 +182,7 @@
 		$('#payment').css('display', 'block');
 		$('h4.panel-title a').click();
 		 resultname = new Date().getTime();
-		 selected = findSelected();
+		 selected = findSelected(true);
 		$('#id').val(apihost + 'download/?resultname='+resultname);
 		$.ajax({
 			url: apihost + 'render',
@@ -214,7 +192,7 @@
 				resultname: resultname
 			}
 		});
-		updatePreview();
+		// updatePreview();
 	}
 
 	$(function(){
@@ -231,7 +209,7 @@
 		loadArtwork(function(result){
 			artworkResponse = result;
 			artwork = result.categories;
-			$(".total_combinations").text(Humanize.intComma(artworkResponse.total_combinations) + " possible combinations");
+			$(".total_combinations").text(Humanize.intComma(artworkResponse.total_combinations));
 			var i = 0;
 			var special = true;
 			for (var cat in artwork) {
@@ -240,8 +218,9 @@
 				special = i <= minElsAmount;
 				var category = artwork[cat];
 				var catID = category.name;
-				var list = $("<div>");
-				
+                var list_width = Math.max(category.images.length*28, 100);
+				var list = $("<div style='width: "+list_width+"%'>");
+
 				if (!special) {
 					$("<label>", {class:'none item'}).append(
 						$('<input>', {type:'radio', name:catID, value: "<none>", checked: (special ? 'checked' : null)}).change(updatePreview),

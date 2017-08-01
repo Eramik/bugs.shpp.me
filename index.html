@@ -3,7 +3,7 @@
 	<title>Bugarium</title>
 
 	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-	<link rel='stylesheet' href='static/app.css?cb=5'>
+	<link rel='stylesheet' href='static/app.css'>
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
@@ -34,6 +34,13 @@
 	<script src='static/humanize.min.js'></script>
 </head>
 <body>
+<header>
+	<div id="logo">
+		<span>Ш<span class="green">++</span></span>
+		<hr>
+		<div id="slogan">Bugarium: make bugs, not war.</div>
+	</div>
+</header>
 <main>
 	<dialog id="about-us" open>
 		<p>Привет!</p>
@@ -42,23 +49,23 @@
 	</dialog>
 	<div class='container'>
 		<div class='row'>
-			<div class='col-xs-8'>
+			<div class='col-xs-8 col'>
 				<div id='preview'></div>
 			</div>
-			<div class='col-xs-4'>
-				<button id='shuffle-button' class='btn btn-default'><i class='glyphicon glyphicon-refresh'></i>Shuffle</button>
-				<button id='reset-button' class='btn btn-default'>Reset</button>
+			<div class='col-xs-4 col'>
+				<button id='shuffle-button' class='btn btn-default'><i class='glyphicon glyphicon-refresh'></i>Перемешать</button>
+				<button id='reset-button' class='btn btn-default'>Сбросить</button>
 				<br /><br />
 				<form class='panel-group' id='options' role='tablist' aria-multiselectable='true'>
 				</form>
 				<button id='render-button' class='btn btn-primary btn-lg'>
-					Save &amp; buy<i class='glyphicon glyphicon glyphicon-chevron-right'></i>
+					Сохранить &amp; купить<i class='glyphicon glyphicon glyphicon-chevron-right'></i>
 				</button>
 
 				<div id="payment" style="display: none;">
 					<button id='cancel' class='btn btn-error'>X</button>
 					<div class="range-slider">
-						<h2>Amount of money</h2>
+						<h2>Сумма денег</h2>
 						<input class="input-range" type="range" value="2000" min="150" max="15000">
 						<input type="text" class="range-value">
 					</div>
@@ -69,14 +76,13 @@
 							<img src="https://static.liqpay.com/buttons/logo-small.png" name="btn_text"
 								 style="margin-right: 7px; vertical-align: middle;"/>
 						</button>
-						<span style="vertical-align:middle;">Pay <span id="sum">2000</span> UAH</span>
+						<span style="vertical-align:middle;">Заплатить <span id="sum">2000</span> грн.</span>
 					</form>
 				</div>
-				<footer>
-					Be truly unique, there are
-					<span class='total_combinations'></span>
+				<div class="footer">
+					Будь уникальным! Есть <span class='total_combinations'></span> возможных комбинаций.
 					<hr/>
-				</footer>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -86,17 +92,8 @@
 	<p>Каждый раз, когда Вы совершаете покупки с помощью Вашей карты в Интернет-магазинах, участвующих в программе MasterCard SecureCode, автоматически появляется окно с запросом Вашего персонального пароля, Вам нужно только ввести его. Эта процедура очень похожа на ввод PIN-кода карты, когда Вы хотите воспользоваться ею через банкомат. Через несколько секунд банк-эмитент подтвердит Вашу личность, позволяя Вашей покупке осуществиться в безопасном режиме.</p>
 	<p>Чтобы активировать услугу MasterCard SecureCode для Вашей карты Visa, либо для того, чтобы получить более детальную информацию, свяжитесь с Вашим банком.</p>
 	<p>Больше информации о MasterCard SecureCode на сайте: <a href="http://www.mastercardsecurecode.com" target="_blank">www.mastercardsecurecode.com</a> </p>
-	<p>MasterCard® SecureCode™ is a new service from MasterCard and your card issuer that provides added protection when you buy online. There is no need to get a new MasterCard or Maestro® card. You choose your own personal MasterCard SecureCode and it is never shared with any merchant. A private code means added protection against unauthorized use of your credit or debit card when you shop online.</p>
-	<p>Every time you pay online with your MasterCard or Maestro card, a box pops up from your card issuer asking you for your personal SecureCode, just like the bank does at the ATM. In seconds, your card issuer confirms it"s you and allows your purchase to be completed.</p>
-	<p>To activate MasterCard SecureCode for your Visa card, or to learn more, contact the financial institution that issued your Visa card.</p>
-	<p>More information about MasterCard SecureCode at the web-site:<a href="http://www.mastercardsecurecode.com" target="_blank">www.mastercardsecurecode.com</a></p>
 </dialog>
 <dialog class="learn-more" id="visa">
-	<p>Same card, added safety online</p>
-	<p>Verified by Visa is a new service that lets you shop online with added confidence. Through a simple checkout process, Verified by Visa confirms your identity when you make purchases at participating online stores. It’s convenient, and it works with your existing Visa card.</p>
-	<p>Plus, Verified by Visa is simple to use. You register your card just once, and crate your own password. Then, when you make purchases at participating online stores, a Verified by Visa window will appear. Simply enter your password and click submit. Your identity is verified and the purchase is secure.</p>
-	<p>To activate Verified by Visa in your Visa card, or to learn more, contact the financial institution that issued your Visa card.</p>
-	<p>More information about Verified By Visa please find at the <a href="http://www.visacemea.com/uv/online_security.jsp" target="_blank">www.visacemea.com/uv/online_security.jsp</a></p>
 	<p>Дополнительная безопасность в режиме on-line для Вашей карты</p>
 	<p>Verified by Visa - новая услуга, которая позволяет Вам совершать покупки в режиме реального времени, обеспечивая дополнительную безопасность Ваших операций.</p>
 	<p>Используя простую процедуру проверки, Verified by Visa подтвердит Вашу личность во время совершения Вами покупки в участвующих в этой программе в Интернет-магазинах. Это очень удобно и Вы сможете использовать для этого Вашу карту Visa.</p>
