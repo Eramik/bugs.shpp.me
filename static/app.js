@@ -60,6 +60,7 @@
 			url: apihost + "pay",
 			method: "POST",
 			data: {
+				resultname: resultname,
 				result_url: apihost + 'download?resultname=' + resultname,
 				amount: amount
 			}
