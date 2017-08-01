@@ -32,16 +32,15 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
 	<script src='static/humanize.min.js'></script>
-	<script src='static/app.js?cb=8'></script>
 </head>
 <body>
-	<main>
-		<dialog id="about-us" open>
-			<p>Привет!</p>
-			<p>bugs.shpp.me &mdash; это проект, разработанный школой программирования <a href="http://programming.kr.ua" target="_blank">Ш++</a>, которую в 2012 году основали в Кропивницом Анатолий Васильевич Кнышук и Роман Шмелёв.</p>
-			<p>Вы можете поддержать школу разными способами, в том числе воспользовавшись услугами нашего сервиса по генерации уникальных жуков.</p>
-		</dialog>
-		<div class='container'>
+<main>
+	<dialog id="about-us" open>
+		<p>Привет!</p>
+		<p>bugs.shpp.me &mdash; это проект, разработанный школой программирования <a href="http://programming.kr.ua" target="_blank">Ш++</a>, которую в 2012 году основали в Кропивницом Анатолий Васильевич Кнышук и Роман Шмелёв.</p>
+		<p>Вы можете поддержать школу разными способами, в том числе воспользовавшись услугами нашего сервиса по генерации уникальных жуков.</p>
+	</dialog>
+	<div class='container'>
 		<div class='row'>
 			<div class='col-xs-8'>
 				<div id='preview'></div>
@@ -55,7 +54,7 @@
 				<button id='render-button' class='btn btn-primary btn-lg'>
 					Save &amp; buy<i class='glyphicon glyphicon glyphicon-chevron-right'></i>
 				</button>
-				
+
 				<div id="payment" style="display: none;">
 					<button id='cancel' class='btn btn-error'>X</button>
 					<div class="range-slider">
@@ -81,38 +80,39 @@
 			</div>
 		</div>
 	</div>
-	</main>
-	<dialog class="learn-more" id="mastercad">
-		<p>MasterCard® SecureCode™ - новая услуга MasterCard, предоставляющая дополнительную безопасность, когда Вы совершаете покупки в сети Интернет. Для того, чтобы ею воспользоваться Вам не нужно приобретать новую карту – Вы можете использовать уже существующую. Вы выбираете Ваш персональный SecureCode, который будет одним для всех Интернет-магазинов. Данный пароль дает Вам дополнительную защиту от неправомерного использования Вашей карты во время покупок в сети.</p>
-		<p>Каждый раз, когда Вы совершаете покупки с помощью Вашей карты в Интернет-магазинах, участвующих в программе MasterCard SecureCode, автоматически появляется окно с запросом Вашего персонального пароля, Вам нужно только ввести его. Эта процедура очень похожа на ввод PIN-кода карты, когда Вы хотите воспользоваться ею через банкомат. Через несколько секунд банк-эмитент подтвердит Вашу личность, позволяя Вашей покупке осуществиться в безопасном режиме.</p>
-		<p>Чтобы активировать услугу MasterCard SecureCode для Вашей карты Visa, либо для того, чтобы получить более детальную информацию, свяжитесь с Вашим банком.</p>
-		<p>Больше информации о MasterCard SecureCode на сайте: <a href="http://www.mastercardsecurecode.com" target="_blank">www.mastercardsecurecode.com</a> </p>
-		<p>MasterCard® SecureCode™ is a new service from MasterCard and your card issuer that provides added protection when you buy online. There is no need to get a new MasterCard or Maestro® card. You choose your own personal MasterCard SecureCode and it is never shared with any merchant. A private code means added protection against unauthorized use of your credit or debit card when you shop online.</p>
-		<p>Every time you pay online with your MasterCard or Maestro card, a box pops up from your card issuer asking you for your personal SecureCode, just like the bank does at the ATM. In seconds, your card issuer confirms it"s you and allows your purchase to be completed.</p>
-		<p>To activate MasterCard SecureCode for your Visa card, or to learn more, contact the financial institution that issued your Visa card.</p>
-		<p>More information about MasterCard SecureCode at the web-site:<a href="http://www.mastercardsecurecode.com" target="_blank">www.mastercardsecurecode.com</a></p>
-	</dialog>
-	<dialog class="learn-more" id="visa">
-		<p>Same card, added safety online</p>
-		<p>Verified by Visa is a new service that lets you shop online with added confidence. Through a simple checkout process, Verified by Visa confirms your identity when you make purchases at participating online stores. It’s convenient, and it works with your existing Visa card.</p>
-		<p>Plus, Verified by Visa is simple to use. You register your card just once, and crate your own password. Then, when you make purchases at participating online stores, a Verified by Visa window will appear. Simply enter your password and click submit. Your identity is verified and the purchase is secure.</p>
-		<p>To activate Verified by Visa in your Visa card, or to learn more, contact the financial institution that issued your Visa card.</p>
-		<p>More information about Verified By Visa please find at the <a href="http://www.visacemea.com/uv/online_security.jsp" target="_blank">www.visacemea.com/uv/online_security.jsp</a></p>
-		<p>Дополнительная безопасность в режиме on-line для Вашей карты</p>
-		<p>Verified by Visa - новая услуга, которая позволяет Вам совершать покупки в режиме реального времени, обеспечивая дополнительную безопасность Ваших операций.</p>
-		<p>Используя простую процедуру проверки, Verified by Visa подтвердит Вашу личность во время совершения Вами покупки в участвующих в этой программе в Интернет-магазинах. Это очень удобно и Вы сможете использовать для этого Вашу карту Visa.</p>
-		<p>Дополнительно к всем остальным преимуществам - Verified by Visa очень проста в использовании. Вы регистрируете карту только один раз и получаете свой пароль. Затем при совершении покупок в участвующих в этой программе Интернет-магазинах, автоматически появляется диалоговое окно Verified By Visa. Вам необходимо только лишь ввести свой пароль и подтвердить свою операцию (кликнуть «Подтвердить»). Ваша личность будет подтверждена и покупка будет совершена в режиме безопасности.</p>
-		<p>А также, конфиденциальная информация о номере Вашей карточки, CVV2/CVC2-коде передаются Вами на сайт сервера/системы безопасных электронных платежей ПриватБанка в зашифрованном виде. Для передачи данных используется протокол SSL, поэтому безопасность операций полностью гарантирована.</p>
-		<p>Для того, чтобы проверить безопасно ли соединение, обратите внимание на адрес страницы, он начинается с «https://» (незащищенные страницы начинаются с «http://»).</p>
-		<p>Чтобы активировать данную услугу Verified by Visa для Вашей карты Visa, либо для того, чтобы получить более детальную информацию, свяжитесь с Вашим банком.</p>
-		<p>Подробнее о Verified By Visa на сайте <a href="http://www.visacemea.com/uv/online_security.jsp" target="_blank">www.visacemea.com/uv/online_security.jsp</a> </p>
-	</dialog>
-	<footer>
+</main>
+<dialog class="learn-more" id="mastercad">
+	<p>MasterCard® SecureCode™ - новая услуга MasterCard, предоставляющая дополнительную безопасность, когда Вы совершаете покупки в сети Интернет. Для того, чтобы ею воспользоваться Вам не нужно приобретать новую карту – Вы можете использовать уже существующую. Вы выбираете Ваш персональный SecureCode, который будет одним для всех Интернет-магазинов. Данный пароль дает Вам дополнительную защиту от неправомерного использования Вашей карты во время покупок в сети.</p>
+	<p>Каждый раз, когда Вы совершаете покупки с помощью Вашей карты в Интернет-магазинах, участвующих в программе MasterCard SecureCode, автоматически появляется окно с запросом Вашего персонального пароля, Вам нужно только ввести его. Эта процедура очень похожа на ввод PIN-кода карты, когда Вы хотите воспользоваться ею через банкомат. Через несколько секунд банк-эмитент подтвердит Вашу личность, позволяя Вашей покупке осуществиться в безопасном режиме.</p>
+	<p>Чтобы активировать услугу MasterCard SecureCode для Вашей карты Visa, либо для того, чтобы получить более детальную информацию, свяжитесь с Вашим банком.</p>
+	<p>Больше информации о MasterCard SecureCode на сайте: <a href="http://www.mastercardsecurecode.com" target="_blank">www.mastercardsecurecode.com</a> </p>
+	<p>MasterCard® SecureCode™ is a new service from MasterCard and your card issuer that provides added protection when you buy online. There is no need to get a new MasterCard or Maestro® card. You choose your own personal MasterCard SecureCode and it is never shared with any merchant. A private code means added protection against unauthorized use of your credit or debit card when you shop online.</p>
+	<p>Every time you pay online with your MasterCard or Maestro card, a box pops up from your card issuer asking you for your personal SecureCode, just like the bank does at the ATM. In seconds, your card issuer confirms it"s you and allows your purchase to be completed.</p>
+	<p>To activate MasterCard SecureCode for your Visa card, or to learn more, contact the financial institution that issued your Visa card.</p>
+	<p>More information about MasterCard SecureCode at the web-site:<a href="http://www.mastercardsecurecode.com" target="_blank">www.mastercardsecurecode.com</a></p>
+</dialog>
+<dialog class="learn-more" id="visa">
+	<p>Same card, added safety online</p>
+	<p>Verified by Visa is a new service that lets you shop online with added confidence. Through a simple checkout process, Verified by Visa confirms your identity when you make purchases at participating online stores. It’s convenient, and it works with your existing Visa card.</p>
+	<p>Plus, Verified by Visa is simple to use. You register your card just once, and crate your own password. Then, when you make purchases at participating online stores, a Verified by Visa window will appear. Simply enter your password and click submit. Your identity is verified and the purchase is secure.</p>
+	<p>To activate Verified by Visa in your Visa card, or to learn more, contact the financial institution that issued your Visa card.</p>
+	<p>More information about Verified By Visa please find at the <a href="http://www.visacemea.com/uv/online_security.jsp" target="_blank">www.visacemea.com/uv/online_security.jsp</a></p>
+	<p>Дополнительная безопасность в режиме on-line для Вашей карты</p>
+	<p>Verified by Visa - новая услуга, которая позволяет Вам совершать покупки в режиме реального времени, обеспечивая дополнительную безопасность Ваших операций.</p>
+	<p>Используя простую процедуру проверки, Verified by Visa подтвердит Вашу личность во время совершения Вами покупки в участвующих в этой программе в Интернет-магазинах. Это очень удобно и Вы сможете использовать для этого Вашу карту Visa.</p>
+	<p>Дополнительно к всем остальным преимуществам - Verified by Visa очень проста в использовании. Вы регистрируете карту только один раз и получаете свой пароль. Затем при совершении покупок в участвующих в этой программе Интернет-магазинах, автоматически появляется диалоговое окно Verified By Visa. Вам необходимо только лишь ввести свой пароль и подтвердить свою операцию (кликнуть «Подтвердить»). Ваша личность будет подтверждена и покупка будет совершена в режиме безопасности.</p>
+	<p>А также, конфиденциальная информация о номере Вашей карточки, CVV2/CVC2-коде передаются Вами на сайт сервера/системы безопасных электронных платежей ПриватБанка в зашифрованном виде. Для передачи данных используется протокол SSL, поэтому безопасность операций полностью гарантирована.</p>
+	<p>Для того, чтобы проверить безопасно ли соединение, обратите внимание на адрес страницы, он начинается с «https://» (незащищенные страницы начинаются с «http://»).</p>
+	<p>Чтобы активировать данную услугу Verified by Visa для Вашей карты Visa, либо для того, чтобы получить более детальную информацию, свяжитесь с Вашим банком.</p>
+	<p>Подробнее о Verified By Visa на сайте <a href="http://www.visacemea.com/uv/online_security.jsp" target="_blank">www.visacemea.com/uv/online_security.jsp</a> </p>
+</dialog>
+<footer>
 	<div id="liqpay-logos">
 		<div class="logo-holder"><img class="logo" id="mclogo" src="static/mc.jpg" alt=""></div>
 		<div class="logo-holder"><img class="logo" id="visalogo" src="static/visa.png" alt=""></div>
 	</div>
-	</footer>
+</footer>
 
+<script src='static/app.js?cb=8'></script>
 </body>
 </html>
