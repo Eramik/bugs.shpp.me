@@ -1,28 +1,28 @@
 (function($){
-	let apihost = 'http://bugs.shpp.me:3013/';
-	let apiArtwork = apihost + 'images';
-	let artworkResponse = null;
-	let artwork = null;
+	var apihost = 'http://bugs.shpp.me:3013/';
+	var apiArtwork = apihost + 'images';
+	var artworkResponse = null;
+	var artwork = null;
 
-	let selection = [];
-	let resultname;
-	let minElsAmount = 3;
+	var selection = [];
+	var resultname;
+	var minElsAmount = 3;
 
 	function absurl() {
 		return apihost+'render.png?dl=0&images=' + encodeURIComponent(selection.join('|'))
 	}
 
 	$('#download-button').click(function(){
-		let $this = $(this);
+		var $this = $(this);
 		$this.attr("disabled", "disabled");
 		location.href = '/api/render.png?images=' + encodeURIComponent(selection.join('|'))
 	});
 
 	$('#share-button').click(function(){
-		let $this = $(this);
-		let absURL = absurl();
-		let text = "I just Gopherized myself on https://gopherize.me via @ashleymcnamara and @matryer";
-		let shareURL = 'https://twitter.com/share?url='+encodeURIComponent(absURL)+'&text='+encodeURIComponent(text)+'&hashtags=golang,gopherize'
+		var $this = $(this);
+		var absURL = absurl();
+		var text = "I just Gopherized myself on https://gopherize.me via @ashleymcnamara and @matryer";
+		var shareURL = 'https://twitter.com/share?url='+encodeURIComponent(absURL)+'&text='+encodeURIComponent(text)+'&hashtags=golang,gopherize'
 		window.open(shareURL)
 	});
 
@@ -35,7 +35,7 @@
 	});
 
 	/* range slider button display */
-    let range = $('.input-range'),
+    var range = $('.input-range'),
 		value = $('.range-value');
     value.val(range.attr('value'));
     range.on('input', function(){
@@ -54,8 +54,8 @@
         $("#render-button").css("display", 'block');
     });
 
-    $('#liqpay').on('click', () =>{
-	var amount = 10;// value.val();
+    $('#liqpay').on('click', function() {
+    	var amount = 10; //value.val();
     	$.ajax({
 			url: apihost + "pay",
 			method: "POST",
@@ -63,7 +63,7 @@
 				result_url: apihost + 'download?resultname=' + resultname,
 				amount: amount
 			}
-		}).done(msg=>{
+		}).done(function (msg) {
 			msg = JSON.parse(msg);
 			$('#data').val(msg['DATA']);
             $('#signature').val(msg['SIGNATURE']);
@@ -84,9 +84,8 @@
     $('dialog#about-us').dialog('open');
 
 
-    $('.logo').on('click', (e)=>{
+    $('.logo').on('click', function (e){
         var target = e.target.id;
-        console.log(target);
         if(target === 'visalogo')
 			$('dialog#visa').dialog('open');
         if(target === 'mclogo')
@@ -102,7 +101,7 @@
 			error: function(){
 				console.warn(arguments)
 			},
-			complete: function(){
+			compvare: function(){
 				busy(false)
 			}
 		})
@@ -117,12 +116,12 @@
 	}
 
 	function getImageByID(id) {
-		for (let cat in artwork) {
+		for (var cat in artwork) {
 			if (!artwork.hasOwnProperty(cat)) { continue }
-			let category = artwork[cat];
-			for (let img in category.images) {
+			var category = artwork[cat];
+			for (var img in category.images) {
 				if (!category.images.hasOwnProperty(img)) { continue }
-				let image = category.images[img];
+				var image = category.images[img];
 				if (image.id === id) {
 					return image
 				}
@@ -132,16 +131,16 @@
 	}
 
 	function findSelected() {
-		let ids = [];
-		let special = true;
-        let previewEl = $('#preview').empty();
+		var ids = [];
+		var special = true;
+        var previewEl = $('#preview').empty();
 		$('#options').find('input:checked').each(function(){
-            let $this = $(this);
-            let id = $this.val();
-            let img = getImageByID(id);
+            var $this = $(this);
+            var id = $this.val();
+            var img = getImageByID(id);
             if (img !== null) {
                 ids.push(id);
-                let mt = special ? 0 : -1000;
+                var mt = special ? 0 : -1000;
                 previewEl.append(
                     $("<img>", {src: img.href}).css({
                         marginTop: -1000
@@ -155,11 +154,11 @@
 
 	function updatePreview() {
 		$("#render-button").prop("disabled", false);
-		let previewEl = $('#preview').empty();
+		var previewEl = $('#preview').empty();
 		selection = findSelected();
-        let i = 1;
+        var i = 1;
 		previewEl.find("img").each(function(){
-			let $this = $(this);
+			var $this = $(this);
 			$this.animate({
 				marginTop: 0
 			}, 250*i);
@@ -168,13 +167,13 @@
 	}
 
 	function shuffle() {
-		let i = 0;
-		for (let cat in artwork) {
+		var i = 0;
+		for (var cat in artwork) {
 			if (!artwork.hasOwnProperty(cat)) { continue }
 			i++;
-			let special = i <= minElsAmount;
-			let category = artwork[cat];
-			let rand = Math.round(Math.random()*(category.images.length));
+			var special = i <= minElsAmount;
+			var category = artwork[cat];
+			var rand = Math.round(Math.random()*(category.images.length));
 			if (rand < 0 && special) {
 				rand = 0
 			}
@@ -183,7 +182,7 @@
 				$('input[name="'+category.name+'"]').prop('checked', false);
 				continue	
 			}
-			let image = category.images[rand];
+			var image = category.images[rand];
 			$('input[value="'+image.id+'"]').prop('checked', true)
 		}
 		updatePreview()
@@ -226,21 +225,21 @@
 			reset()
 		});
 
-		let optionsEl = $('#options');
+		var optionsEl = $('#options');
 
 		loadArtwork(function(result){
 			artworkResponse = result;
 			artwork = result.categories;
 			$(".total_combinations").text(Humanize.intComma(artworkResponse.total_combinations) + " possible combinations");
-			let i = 0;
-			let special = true;
-			for (let cat in artwork) {
+			var i = 0;
+			var special = true;
+			for (var cat in artwork) {
 				if (!artwork.hasOwnProperty(cat)) { continue }
 				i++;
 				special = i <= minElsAmount;
-				let category = artwork[cat];
-				let catID = category.name;
-				let list = $("<div>");
+				var category = artwork[cat];
+				var catID = category.name;
+				var list = $("<div>");
 				
 				if (!special) {
 					$("<label>", {class:'none item'}).append(
@@ -249,10 +248,10 @@
 					).appendTo(list)
 				}
 
-				let specialInCat = true;
-				for (let img in category.images) {
+				var specialInCat = true;
+				for (var img in category.images) {
 					if (!category.images.hasOwnProperty(img)) { continue }
-					let image = category.images[img];
+					var image = category.images[img];
 
 					$("<label>", {class:'item'}).append(
 						$('<input>', {type:'radio', name:catID, value:image.id, checked: (special && specialInCat ? 'checked' : null)}).change(updatePreview),
@@ -261,7 +260,7 @@
 					specialInCat = false
 				}
 				
-				let panel = $("<div>", {class:'panel panel-default'});
+				var panel = $("<div>", {class:'panel panel-default'});
 				panel.append(
 					$("<div>", {class:'panel-heading', role:'tab'}).append(
 						$("<h4>", {class:'panel-title'}).append(
@@ -279,20 +278,12 @@
 				);
 				panel.append(
 					$("<div>", {id:catID, class:'panel-collapse collapse' + (special ? ' in' : ''), role:'tabpanel'}).append(
-						$("<div>", {class:'panel-body'}).append(
-							list
-						)
+						$("<div>", {class:'panel-body'}).append(list)
 					)
 				);
-
 				optionsEl.append(panel)
-
 			}
-
 			updatePreview()
-
 		})
-
 	})
-
 })(jQuery);
