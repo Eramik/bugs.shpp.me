@@ -55,12 +55,13 @@
     });
 
     $('#liqpay').on('click', () =>{
+	var amount = 10;// value.val();
     	$.ajax({
 			url: apihost + "pay",
 			method: "POST",
 			data: {
 				result_url: apihost + 'download?resultname=' + resultname,
-				amount: value.val()
+				amount: amount
 			}
 		}).done(msg=>{
 			msg = JSON.parse(msg);
