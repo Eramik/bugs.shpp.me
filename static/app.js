@@ -33,7 +33,7 @@
     });
 
     $('#liqpay').on('click', function() {
-    	var amount = 10; //value.val();
+    	var amount = value.val();
     	$.ajax({
 			url: apihost + "pay",
 			method: "POST",
@@ -54,8 +54,6 @@
         bgiframe: true,
         autoOpen: false,
         modal: true,
-        // closeText: "<i class=\"fa fa-times\" aria-hidden=\"true\"></i>",
-        closeText: 'x',
         open: function(){
             $('.ui-widget-overlay').bind('click',function(){
                 $('dialog').dialog('close');
