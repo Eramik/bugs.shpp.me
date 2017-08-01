@@ -54,6 +54,8 @@
         bgiframe: true,
         autoOpen: false,
         modal: true,
+        // closeText: "<i class=\"fa fa-times\" aria-hidden=\"true\"></i>",
+        closeText: 'x',
         open: function(){
             $('.ui-widget-overlay').bind('click',function(){
                 $('dialog').dialog('close');
@@ -61,7 +63,7 @@
         }
 	});
     $('dialog#about-us').dialog('open');
-
+    $('.ui-dialog-titlebar-close').html("<i class=\"fa fa-times\" aria-hidden=\"true\"></i>");
 
     $('.logo').on('click', function (e){
         var target = e.target.id;
@@ -218,7 +220,7 @@
 				special = i <= minElsAmount;
 				var category = artwork[cat];
 				var catID = category.name;
-                var list_width = Math.max(category.images.length*28, 100);
+                var list_width = Math.max(category.images.length*23, 100);
 				var list = $("<div style='width: "+list_width+"%'>");
 
 				if (!special) {
@@ -243,8 +245,8 @@
 				var panel = $("<div>", {class:'panel panel-default'});
 				panel.append(
 					$("<div>", {class:'panel-heading', role:'tab'}).append(
-						$("<h4>", {class:'panel-title'}).append(
-							$("<a>", {
+						$("<h4>", {class:'panel-title'}).append(nicename(category.name)).append(
+						    $("<a>", {
 								'class': (special ? '' : 'collapsed'),
 								'role': 'button',
 								'data-toggle': 'collapse',
@@ -252,7 +254,7 @@
 								'href': '#'+catID,
 								'aria-expanded': (special ? 'true' : 'false'),
 								'aria-controls': catID
-							}).text(nicename(category.name)).tooltip()
+							}).html('<i class="fa fa-angle-down" aria-hidden="true"></i>\n').tooltip()
 						)
 					)
 				);
