@@ -1,6 +1,12 @@
+/* #2fd072 -- light green*/
+/* #27ae60 -- regular green*/
 body {
 	padding-top: 30px;
 	overflow: hidden;
+	font-family: 'Roboto', sans-serif;
+}
+*{
+	overflow: visible;
 }
 @font-face {
 	font-family: 'Trebuchet MS';
@@ -61,7 +67,8 @@ body {
 
 .panel-body {
 	max-height: 390px;
-	overflow-y: scroll;
+	overflow-y: hidden;
+	overflow-x: visible;
 }
 #liqpay {
 	border: none;
@@ -182,7 +189,7 @@ input::-moz-focus-inner {
 	right: 20%!important;
 	width: 60%!important;
 	max-height: 80vh;
-	overflow-y: scroll;
+	overflow-y: visible;
 	border: 3px solid #27ae60;
 	border-radius: 0;
 	background-image: url('../img/apple-touch-icon.png');
@@ -191,13 +198,7 @@ input::-moz-focus-inner {
 	background-position-y: 97%;
 	background-size: 6%;
 }
-* {
-	-ms-overflow-style: none;  // IE 10+
-overflow: -moz-scrollbars-none;  // Firefox
-}
-* ::-webkit-scrollbar {
-	display: none;
-}
+
 .ui-dialog a{
 	color: #27ae60!important;
 	text-decoration: underline;
@@ -226,10 +227,9 @@ overflow: -moz-scrollbars-none;  // Firefox
 	top: 5px;
 	left: 0;
 	width: 20vw;
-	font-family: Arial, sans-serif;
-	font-size: 	15px;
 }
 #branding #shpp-logo {
+	font-family: Arial, sans-serif;
 	font-size: 4em;
 	font-weight: bold;
 }
@@ -241,11 +241,13 @@ overflow: -moz-scrollbars-none;  // Firefox
 	margin: 0;
 }
 #slogan{
+	font-size: 	15px;
 	padding-top: 20px;
 	font-family: 'Trebuchet MS', sans-serif;
 }
 .panel-body{
-	overflow-x: scroll;
+	overflow-x: visible;
+	overflow-y: hidden;
 }
 
 @media all and (max-width: 1000px){
@@ -274,8 +276,8 @@ form .fa{
 	outline: none;
 }
 .ui-dialog .ui-dialog-titlebar-close, #cancel{
-	border: 2px solid  red;
-	color: red;
+	border: 2px solid  #27ae60;
+	color: #27ae60;
 	width: 40px;
 	height: 40px;
 	background: transparent;
@@ -302,35 +304,43 @@ button.btn:focus, button.btn:active, button.btn{
 	padding: 15px 0;
 	text-align: center;
 	text-transform: uppercase;
-	transition: 0.5s;
+	transition: 0.2s;
 	background-size: 200% auto;
 	color: white;
 	/* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
 	box-shadow: 0 0 20px #eee;
-	background-color: #27ae60;
-	border-radius: 0;
+	/*background-color: #2fd072;*/
+	border-radius: 5px;
 }
-
-/* Demo Stuff End -> */
-
-/* <- Magic Stuff Start */
 
 .btn:hover {
 	background-position: right center; /* change the direction of the change here */
 	color: white;
-	background-color: #2cc36b;
+	/*background-color: #2cc36b;*/
 }
-/*.btn-2 {*/
-	/*background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);*/
-/*}*/
-
-/*.btn-3 {*/
+.btn-2 {
 	/*background-image: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);*/
-/*}*/
+	background-color: #8fd3f4;
+}
 
-/*.btn-4 {*/
-	/*background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);*/
-/*}*/
+.btn-3 {
+	color: white;
+	background-color: #27ae60;
+	border: none;
+}
+.btn-3:hover,.btn-3:focus {
+	background-color: #2fd072;
+}
+.btn-4 {
+	background-color: #8fd3f4;
+}
+.btn-1 {
+	background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
+}
+
+.btn-5 {
+	background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 51%, #ffecd2 100%);
+}
 .container{
 	width: 95vw;
 }
@@ -338,7 +348,6 @@ button.btn:focus, button.btn:active, button.btn{
 	padding: 0 3%;
 }
 .panel-collapse {
-	border: 1px solid #bbbbbb;
 	border-top: none;
 }
 .panel-group .panel{
@@ -346,19 +355,27 @@ button.btn:focus, button.btn:active, button.btn{
 	border-radius: 0;
 }
 .panel-default>.panel-heading{
-	background: #27ae60;
-	border: none;
-	border-radius: 0;
+	border: 2px solid rgb(235, 235, 235);
+	border-bottom: 2px solid;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: black;
 }
 .panel-default:nth-child(1) .panel-heading {
-	/*color: #c2e9fb;  }*/
-	color: white;
-}
+	background-color: rgb(255, 255, 255);
+	color: #fbc2eb;}
 .panel-default:nth-child(2) .panel-heading {
-	/*color: #a6c1ee;}*/
-	color: white;
-}
+	background-color: rgb(255, 255, 255);
+	color: #a6c1ee;}
 .panel-default:nth-child(3) .panel-heading {
-	/*color: #fbc2eb;}*/
-	color: white;
+	background-color: rgb(255, 255, 255);
+	color: #c2e9fb;  }
+
+.panel-body {
+	border: 2px solid rgb(235, 235, 235);
+	/*background-color: rgb(247, 247, 247);*/
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top: none!important;
 }
