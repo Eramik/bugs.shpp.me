@@ -152,8 +152,8 @@
 			i++;
 			var special = i <= minElsAmount;
 			var category = artwork[cat];
-			var rand = Math.round(Math.random()*(category.images.length));
-			if (rand < 0 && special) {
+			var rand = Math.round(Math.random()*(category.images.length-1));
+            if (rand < 0 && special) {
 				rand = 0
 			}
 			if (rand < 0) {
@@ -162,7 +162,7 @@
 				continue	
 			}
 			var image = category.images[rand];
-			$('input[value="'+image.id+'"]').prop('checked', true)
+            $('input[value="'+image.id+'"]').prop('checked', true)
 		}
 		updatePreview()
 	}
@@ -198,7 +198,7 @@
 	$(function(){
 
 		$('#shuffle-button').click(function(){
-			shuffle()
+            shuffle()
 		});
 		$('#reset-button').click(function(){
 			reset()
@@ -218,8 +218,8 @@
 				special = i <= minElsAmount;
 				var category = artwork[cat];
 				var catID = category.name;
-                var list_width = Math.max(category.images.length*23, 100);
-				var list = $("<div style='width: "+list_width+"%'>");
+                var list_width = Math.max(category.images.length*75, 328);
+                var list = $("<div style='width: "+list_width+"px'>");
 
 				if (!special) {
 					$("<label>", {class:'none item'}).append(
@@ -252,7 +252,7 @@
 								'href': '#'+catID,
 								'aria-expanded': (special ? 'true' : 'false'),
 								'aria-controls': catID
-							}).html('<i class="fa fa-angle-down" aria-hidden="true"></i>\n').tooltip()
+							}).html('<i class="fa fa-angle-down" aria-hidden="true"></i>').tooltip()
 						)
 					)
 				);

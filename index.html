@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<link rel='stylesheet' href='static/app.css'>
+
 	<link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
@@ -36,17 +37,18 @@
 </head>
 <body>
 <header>
-	<div id="logo">
-		<span>Ш<span class="green">++</span></span>
+	<div id="branding">
+		<div id="shpp-logo">Ш<span class="green">++</span></div>
 		<hr>
-		<div id="slogan">Bugarium: make bugs, not war.</div>
+		<div id="slogan" class="upper">make bugs, not war</div>
 	</div>
 </header>
 <main>
 	<dialog id="about-us" open>
 		<p>Привет!</p>
-		<p>Bugarium &mdash; это проект, разработанный школой программирования <a href="http://programming.kr.ua" target="_blank">Ш++</a>, которую в 2012 году основали в Кропивницом Анатолий Васильевич Кнышук и Роман Шмелёв.</p>
+		<p>Bugarium &mdash; это проект, разработанный школой программирования <a href="http://programming.kr.ua" target="_blank">Ш++</a>, которую в 2012 году основали в Кропивницом Анатолий Кнышук и Роман Шмелёв.</p>
 		<p>Вы можете поддержать школу разными способами, в том числе воспользовавшись услугами нашего сервиса по генерации уникальных жуков.</p>
+		<p><strong>После оплаты не забудьте вернуться на сайт за своим жуком :)</strong></p>
 	</dialog>
 	<div class='container'>
 		<div class='row'>
@@ -54,17 +56,18 @@
 				<div id='preview'></div>
 			</div>
 			<div class='col-xs-4 col'>
-				<button id='shuffle-button' class='btn btn-default'><i class="fa fa-refresh" aria-hidden="true"></i>Перемешать</button>
-				<button id='reset-button' class='btn btn-default'>Сбросить</button>
-				<br /><br />
+				<div id="control-buttons">
+					<button id='shuffle-button' class='btn btn-2'><i class="fa fa-random" aria-hidden="true"></i>Перемешать</button>
+					<button id='reset-button' class='btn btn-4'><i class="fa fa-repeat" aria-hidden="true"></i>Сбросить</button>
+				</div>
+
 				<form class='panel-group' id='options' role='tablist' aria-multiselectable='true'>
 				</form>
-				<button id='render-button' class='btn btn-primary btn-lg'>
-					Сохранить &amp; купить<i class='glyphicon glyphicon glyphicon-chevron-right'></i>
-				</button>
+				<button id='render-button' class='btn btn-3 '>Купить &amp; Скачать<i class='glyphicon glyphicon glyphicon-chevron-right'></i></button>
 
 				<div id="payment" style="display: none;">
-					<button id='cancel' class='btn btn-error'>X</button>
+					<button id='cancel' class=''><i class="fa fa-times" aria-hidden="true"></i>
+					</button>
 					<div class="range-slider">
 						<h2>Сумма денег</h2>
 						<input class="input-range" type="range" value="2000" min="150" max="15000">
@@ -80,10 +83,14 @@
 						<span style="vertical-align:middle;">Заплатить <span id="sum">2000</span> грн.</span>
 					</form>
 				</div>
-				<div class="footer">
-					Будь уникальным! Есть <span class='total_combinations'></span> возможных комбинаций.
-					<hr/>
+				<div id="liqpay-logos">
+					<div class="logo-holder"><img class="logo" id="mclogo" src="static/mc.jpg" alt=""></div>
+					<div class="logo-holder"><img class="logo" id="visalogo" src="static/visa.png" alt=""></div>
 				</div>
+				<!--<div class="footer">-->
+					<!--Будь уникальным! Есть <span class='total_combinations'></span> возможных комбинаций.-->
+					<!--<hr/>-->
+				<!--</div>-->
 			</div>
 		</div>
 	</div>
@@ -104,13 +111,6 @@
 	<p>Чтобы активировать данную услугу Verified by Visa для Вашей карты Visa, либо для того, чтобы получить более детальную информацию, свяжитесь с Вашим банком.</p>
 	<p>Подробнее о Verified By Visa на сайте <a href="http://www.visacemea.com/uv/online_security.jsp" target="_blank">www.visacemea.com/uv/online_security.jsp</a> </p>
 </dialog>
-<footer>
-	<div id="liqpay-logos">
-		<div class="logo-holder"><img class="logo" id="mclogo" src="static/mc.jpg" alt=""></div>
-		<div class="logo-holder"><img class="logo" id="visalogo" src="static/visa.png" alt=""></div>
-	</div>
-</footer>
-
 <script src='static/app.js?cb=8'></script>
 </body>
 </html>
