@@ -33,6 +33,9 @@
     });
 
     $('#liqpay').on('click', function() {
+	pay();
+    });
+    function pay(){
     	var amount = value.val();
     	$.ajax({
 			url: apihost + "pay",
@@ -45,12 +48,12 @@
 		}).done(function (msg) {
 			msg = JSON.parse(msg);
 			$('#data').val(msg['DATA']);
-            $('#signature').val(msg['SIGNATURE']);
-            $('#payment').find('form').submit();
-		})
-	});
+                        $('#signature').val(msg['SIGNATURE']);
+                        $('#payment').find('form').submit();
+	})
+    }
 
-	$('dialog').dialog({
+   $('dialog').dialog({
         bgiframe: true,
         autoOpen: false,
         modal: true,
