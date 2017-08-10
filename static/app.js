@@ -28,26 +28,34 @@
     });
 
     $('#cancel').on('click', function () {
-		$('#payment').css('display', 'none');
-        $("#render-button").css("display", 'block');
+    	cancel();
     });
 
-    $('#liqpay').on('click', function() {
-    	var amount = value.val();
-    	$.ajax({
-			url: apihost + "pay",
-			method: "POST",
-			data: {
-				resultname: resultname,
-				result_url: apihost + 'download?resultname=' + resultname,
-				amount: amount
-			}
-		}).done(function (msg) {
-			msg = JSON.parse(msg);
-			$('#data').val(msg['DATA']);
+    function cancel() {
+        $('#payment').css('display', 'none');
+        $("#render-button").css("display", 'block');
+    }
+
+    function generateLiqpay(){
+        var amount = value.val();
+        $.ajax({
+            url: apihost + "pay",
+            method: "POST",
+            data: {
+                resultname: resultname,
+                result_url: apihost + 'download?resultname=' + resultname,
+                amount: amount
+            }
+        }).done(function (msg) {
+            msg = JSON.parse(msg);
+            $('#data').val(msg['DATA']);
             $('#signature').val(msg['SIGNATURE']);
             $('#payment').find('form').submit();
-		})
+        })
+	}
+
+    $('#liqpay').on('click', function() {
+    	generateLiqpay();
 	});
 
 	$('dialog').dialog({
@@ -257,7 +265,7 @@
 					)
 				);
 				panel.append(
-					$("<div>", {id:catID, class:'panel-collapse collapse' + (special ? ' in' : ''), role:'tabpanel'}).append(
+					$("<div>", {id:catID, class:'panel-collapse collapse' + (special && i === 1 ? ' in' : ''), role:'tabpanel'}).append(
 						$("<div>", {class:'panel-body'}).append(list)
 					)
 				);
