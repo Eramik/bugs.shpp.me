@@ -139,18 +139,23 @@
         return ids;
     }
 
+    function animatePart(img) {
+        var $this = $(img);
+        $this.animate({
+            marginTop: 0
+        }, 250*i);
+        i++;
+    }
+
 	function updatePreview() {
 		$("#render-button").prop("disabled", false);
 		var previewEl = $('#preview').empty();
 		selection = findSelected();
-        var i = 1;
-		previewEl.find("img").each(function(){
-			var $this = $(this);
-			$this.animate({
-				marginTop: 0
-			}, 250*i);
-			i++
-		})
+		i = 1;
+		previewEl.find("img").each(function () {
+            animatePart(this);
+        });
+		i = 0;
 	}
 
 	function shuffle() {
@@ -271,7 +276,8 @@
 				);
 				optionsEl.append(panel)
 			}
-			updatePreview()
+			shuffle();
+			// updatePreview()
 		})
 	})
 })(jQuery);
