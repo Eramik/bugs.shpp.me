@@ -14,7 +14,7 @@
 
 	/* range slider button display */
     var range = $('.input-range'),
-		value = $('.range-value');
+    value = $('.range-value');
     value.val(range.attr('value'));
     range.on('input', function(){
     	value.val(this.value);
@@ -28,30 +28,35 @@
     });
 
     $('#cancel').on('click', function () {
-		$('#payment').css('display', 'none');
-        $("#render-button").css("display", 'block');
+    	cancel();
     });
 
-    $('#liqpay').on('click', function() {
-	pay();
-    });
-    function pay(){
-    	var amount = value.val();
-    	$.ajax({
-			url: apihost + "pay",
-			method: "POST",
-			data: {
-				resultname: resultname,
-				result_url: apihost + 'download?resultname=' + resultname,
-				amount: amount
-			}
-		}).done(function (msg) {
-			msg = JSON.parse(msg);
-			$('#data').val(msg['DATA']);
-                        $('#signature').val(msg['SIGNATURE']);
-                        $('#payment').find('form').submit();
-	})
+    function cancel() {
+        $('#payment').css('display', 'none');
+        $("#render-button").css("display", 'block');
     }
+
+    function generateLiqpay(){
+        var amount = value.val();
+        $.ajax({
+            url: apihost + "pay",
+            method: "POST",
+            data: {
+                resultname: resultname,
+                result_url: apihost + 'download?resultname=' + resultname,
+                amount: amount
+            }
+        }).done(function (msg) {
+            msg = JSON.parse(msg);
+            $('#data').val(msg['DATA']);
+            $('#signature').val(msg['SIGNATURE']);
+            $('#payment').find('form').submit();
+        })
+	}
+
+    $('#liqpay').on('click', function() {
+    	generateLiqpay();
+	});
 
    $('dialog').dialog({
         bgiframe: true,
@@ -260,7 +265,7 @@
 					)
 				);
 				panel.append(
-					$("<div>", {id:catID, class:'panel-collapse collapse' + (special ? ' in' : ''), role:'tabpanel'}).append(
+					$("<div>", {id:catID, class:'panel-collapse collapse' + (special && i === 1 ? ' in' : ''), role:'tabpanel'}).append(
 						$("<div>", {class:'panel-body'}).append(list)
 					)
 				);
