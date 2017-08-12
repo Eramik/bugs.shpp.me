@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bugarium &mdash; download bug</title>
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel='stylesheet' href='app.css'>
+
+    <link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:url" content="http://bugs.shpp.me/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Bugarium - сервис для генерации уникальных аватарок" />
+    <meta property="og:description" content="Возможность создать себе уникальную bug-аватарку и поддерждать этим школу программирования Ш++" />
+    <meta property="og:image" content="static/logo.jpg" />
+
+    <meta charset='UTF-8'>
+    <meta name='keywords' content='школа, программирование, Кропивницкий, аватарка, жуки, генератор аватарок, Кировоград, Ш++, пожертвование, programming school, donation, support, bug, avatar, avatar generator'>
+    <meta name='description' content='Сервис для генерации уникальных bug-аватарок, который дает возможность создать уникальное изображение с жуком, а так же поддержать школу программирования Ш++.	'>
+    <meta name='copyright' content='Школа программированиия Ш++'>
+    <meta name="resource-type" content="document" />
+    <meta name="robots" content="all" />
+    <meta name='language' content='ru'>
+    <meta name='url' content='http://bugs.shpp.me/'>
+    <meta name='pagename' content='Bugarium - сервис для генерации уникальных аватарок'>
+
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+</head>
+<body>
+    <div class="container">
+        <div id="result-preview">
+            <img src="{{result_url}}" alt="">
+            <a href="{{result_url}}" target="_blank" class="btn btn-lg btn-primary" download="{{result_url}}">Скачать</a>
+        </div>
+    </div>
+</body>
+</html>

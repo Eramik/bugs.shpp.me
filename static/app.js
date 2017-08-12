@@ -68,8 +68,11 @@
             })
         }
 	});
-    $('dialog#about-us').dialog('open');
-    $('.ui-dialog-titlebar-close').html("<i class=\"fa fa-times\" aria-hidden=\"true\"></i>");
+    if(document.cookie.indexOf('notFirstTimeHere') === -1 ) {
+        document.cookie = "notFirstTimeHere=true;Path=/;expires=Fri, 22 Aug 2022 00:00:00 GMT";
+        $('dialog#about-us').dialog('open');
+    }
+	$('.ui-dialog-titlebar-close').html("<i class=\"fa fa-times\" aria-hidden=\"true\"></i>");
 
     $('.logo').on('click', function (e){
         var target = e.target.id;
@@ -205,7 +208,6 @@
 				resultname: resultname
 			}
 		});
-		// updatePreview();
 	}
 
 	$(function(){
@@ -277,7 +279,6 @@
 				optionsEl.append(panel)
 			}
 			shuffle();
-			// updatePreview()
 		})
 	})
 })(jQuery);

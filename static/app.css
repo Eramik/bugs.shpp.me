@@ -384,3 +384,13 @@ button.btn:focus, button.btn:active, button.btn{
 	border-bottom-right-radius: 5px;
 	border-top: none!important;
 }
+#result-preview img{
+	width: 35vw;
+	display: block;
+	margin: 0 auto;
+}
+#result-preview a.btn.btn-lg.btn-primary{
+	display: block;
+	margin: 0 auto;
+	width: 20%;
+}
