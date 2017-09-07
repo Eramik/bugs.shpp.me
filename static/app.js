@@ -1,5 +1,6 @@
 (function($){
-	var apihost = 'http://bugs.shpp.me:3013/';
+	// var apihost = 'http://bugs.shpp.me:3013/';
+	var apihost = 'http://localhost:3013/';
 	var apiArtwork = apihost + 'images';
 	var artworkResponse = null;
 	var artwork = null;
@@ -210,6 +211,7 @@
 		});
 	}
 
+
 	$(function(){
 
 		$('#shuffle-button').click(function(){
@@ -257,20 +259,23 @@
 				
 				var panel = $("<div>", {class:'panel panel-default'});
 				panel.append(
-					$("<div>", {class:'panel-heading', role:'tab'}).append(
-						$("<h4>", {class:'panel-title'}).append(nicename(category.name)).append(
-						    $("<a>", {
-								'class': (special ? '' : 'collapsed'),
-								'role': 'button',
-								'data-toggle': 'collapse',
-								'data-parent': '#options',
-								'href': '#'+catID,
-								'aria-expanded': (special ? 'true' : 'false'),
-								'aria-controls': catID
-							}).html('<i class="fa fa-angle-down" aria-hidden="true"></i>').tooltip()
+					$("<div>", {
+                        role:'button',
+                        'class': 'panel-heading ' + (special ? '' : 'collapsed'),
+                        'data-toggle': 'collapse',
+                        'data-parent': '#options',
+                        'href': '#'+catID,
+                        'aria-expanded': (special ? 'true' : 'false'),
+                        'aria-controls': catID
+                    }).append(
+						$("<h4>", {class:'panel-title'}).append(
+						    $("<a>").html(
+							    nicename(category.name) +
+                                '<i class="fa fa-angle-down" aria-hidden="true"></i>'
+                            ).tooltip()
 						)
 					)
-				);
+				)
 				panel.append(
 					$("<div>", {id:catID, class:'panel-collapse collapse' + (special && i === 1 ? ' in' : ''), role:'tabpanel'}).append(
 						$("<div>", {class:'panel-body'}).append(list)
