@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <link rel='stylesheet' href='app.css'>
+    <!--<link rel='stylesheet' href='app.css'>-->
+    <link rel='stylesheet' href='http://localhost:8080/bugs.shpp.me/static/app.css'>
 
     <link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
@@ -33,13 +34,26 @@
     <meta name='url' content='http://bugs.shpp.me/'>
     <meta name='pagename' content='Bugarium - сервис для генерации уникальных аватарок'>
 
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <script src='http://localhost:8080/bugs.shpp.me/static/results.js'></script>
 </head>
 <body>
     <div class="container">
-        <div id="result-preview">
+        <div id="result-preview" class=""  >
             <img src="{{result_url}}" alt="">
-            <a href="{{result_url}}" target="_blank" class="btn btn-lg btn-primary" download="{{result_url}}">Скачать</a>
+            <form id="remember-me">
+                <div class="">
+                    Мы хотели бы знать наших постоянных саппортеров, информировать их про наши достижения и внутреннее развитие. Укажите, пожалуйста, ваш email, если это вам интересно...
+                    <input type="email" id="email" name="email" placeholder="info@programming.kr.ua" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                </div>
+                <input type="hidden" value="{{result_url}}" id="result_url">
+                <label>
+                    <input type="checkbox" id="rememberme"> напоминайте мне каждый месяц, буду стараться помогать регулярно
+                </label>
+            </form>
+            <a type="submit" href="{{result_url}}" target="_blank" class="btn btn-lg btn-primary" download="{{result_url}}" id="download-result">Скачать</a>
+
         </div>
     </div>
 </body>
