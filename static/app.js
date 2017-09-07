@@ -15,7 +15,7 @@
 
 	/* range slider button display */
     var range = $('.input-range'),
-		value = $('.range-value');
+    value = $('.range-value');
     value.val(range.attr('value'));
     range.on('input', function(){
     	value.val(this.value);
@@ -59,7 +59,7 @@
     	generateLiqpay();
 	});
 
-	$('dialog').dialog({
+   $('dialog').dialog({
         bgiframe: true,
         autoOpen: false,
         modal: true,
