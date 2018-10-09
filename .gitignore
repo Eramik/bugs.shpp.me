@@ -1,4 +1,6 @@
 node_modules
-results
-app.js
-mail.php
+public/results
+.idea
+
+config.js
+db.json

@@ -1,0 +1,21 @@
+const public = "public/" // relative url to your public folder
+
+module.exports = {
+    server: {
+        "host": "http://bugs.shpp.me/", // The domain where your static will be served
+        "port": "3013" // Your backend port
+    },
+    images: {
+        public,
+        "imgPath": public + "artwork/",
+        "imgBasePath": public + "artwork/base.png",
+        "extension": ".png",
+        "resDir": "results/" // folder, where your generated bugs will be stored, relative to your server.host
+    },
+    liqpay: {
+        "public_key": "some id",
+        "private_key": "some hash"
+    }
+
+}
+

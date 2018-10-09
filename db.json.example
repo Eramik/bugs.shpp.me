@@ -1,0 +1,9 @@
+{
+    "data": [
+        {
+            "email": "example@gmail.com",
+            "remember": "true",
+            "result_url": "http://bugs.shpp.me/results/<some_id>.png"
+        }
+    ]
+}
